@@ -1,14 +1,14 @@
-# Estrattore Contatori Report KIT
+# Estrattore Contatori Report
 
-Applicazione console Windows in C#/.NET per estrarre automaticamente i contatori dai report PDF generati da macchina VI-S 600 e salvarli in file Excel `.xlsx`.
+Applicazione console Windows in C#/.NET per estrarre automaticamente i contatori dai report PDF generati da macchina VI60S e salvarli in file Excel `.xlsx`.
 
-Per ogni PDF elaborato viene creato un file Excel con lo stesso nome del report, nella stessa cartella del PDF.
+Per ogni PDF elaborato viene creato un file Excel con lo stesso nome del report, in una sottocarltella di quella del PDF.
 
 Esempio:
 
 ```text
-C:\Report\Buoni KIT_Report.pdf
-C:\Report\Buoni KIT_Report.xlsx
+C:\Report\Report.pdf
+C:\Report\excel\Report.xlsx
 ```
 
 ## Funzionalità
@@ -30,7 +30,7 @@ C:\Report\Buoni KIT_Report.xlsx
 ## Requisiti per sviluppo
 
 - Windows
-- .NET SDK 8 o superiore
+- .NET SDK 10 o superiore
 - Connessione internet solo in fase di `dotnet restore`, per scaricare i pacchetti NuGet
 
 Pacchetti NuGet usati:
@@ -78,7 +78,7 @@ dotnet run -- "C:\Report"
 Elaborare un singolo PDF:
 
 ```bash
-dotnet run -- "C:\Report\Buoni KIT_Report.pdf"
+dotnet run -- "C:\Report\Report.pdf"
 ```
 
 ## Pubblicazione eseguibile Windows singolo
@@ -90,7 +90,7 @@ dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=
 L'eseguibile viene generato in una sottocartella simile a:
 
 ```text
-bin\Release\net8.0\win-x64\publish\EstrattoreContatori.exe
+bin\Release\net10.0\win-x64\publish\EstrattoreContatori.exe
 ```
 
 È possibile copiare `EstrattoreContatori.exe` su un PC Windows ed eseguirlo senza installare .NET, Python, Microsoft Excel o altri componenti.
@@ -143,11 +143,9 @@ Per ogni PDF viene creato un Excel `.xlsx` con almeno due fogli.
 
 Colonne:
 
-- Sezione
 - Nome contatore
 - Valore
 - Percentuale
-- Pagina origine
 
 La percentuale viene salvata come numero leggibile, ad esempio `91.85`, non come `0.9185`.
 
